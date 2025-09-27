@@ -1,0 +1,36 @@
+-- فروش روزانه (Paid/Shipped)
+SELECT
+  CAST(order_date AS DATE) AS sale_date,
+  SUM(oi.qty*oi.unit_price) AS total_sales,
+  COUNT(DISTINCT o.order_id) AS orders_count
+FROM orders o
+JOIN order_items oi ON o.order_id = oi.order_id
+WHERE o.status IN ('Paid','Shipped')
+GROUP BY CAST(order_date AS DATE)
+ORDER BY sale_date DESC;
+
+-- پرفروش‌ترین محصولات (Top 10)
+SELECT
+  p.product_id, p.name,
+  SUM(oi.qty) AS total_qty,
+  SUM(oi.qty*oi.unit_price) AS total_amount
+FROM order_items oi
+JOIN products p ON p.product_id = oi.product_id
+JOIN orders o ON o.order_id = oi.order_id
+WHERE o.status IN ('Paid','Shipped')
+GROUP BY p.product_id, p.name
+ORDER BY total_qty DESC, total_amount DESC
+LIMIT 10;
+
+-- فروش به تفکیک دسته‌بندی
+SELECT
+  c.category_id, c.name AS category_name,
+  SUM(oi.qty) AS total_qty,
+  SUM(oi.qty*oi.unit_price) AS total_amount
+FROM order_items oi
+JOIN products p ON p.product_id = oi.product_id
+JOIN categories c ON c.category_id = p.category_id
+JOIN orders o ON o.order_id = oi.order_id
+WHERE o.status IN ('Paid','Shipped')
+GROUP BY c.category_id, c.name
+ORDER BY total_amount DESC;

@@ -1,0 +1,2 @@
+psql -h localhost -U appuser -d appdb -f shopdb_postgres.sql
+psql -h localhost -U appuser -d appdb -f seed_orders_by_month.sql

@@ -1,0 +1,15 @@
+http://localhost:5050
+http://localhost:5050/login?next=/
+
+docker network create pg-net
+docker run -d --name postgres --network pg-net --restart unless-stopped -p 5432:5432 -e POSTGRES_USER=appuser -e POSTGRES_PASSWORD=apppass123 -e POSTGRES_DB=appdb -v "C:\Docker\postgres\data:/var/lib/postgresql/data" postgres:16
+docker run -d --name pgadmin --network pg-net --restart unless-stopped -p 5050:80 -e PGADMIN_DEFAULT_EMAIL=admin@local.com -e PGADMIN_DEFAULT_PASSWORD=admin123 -v "C:\Docker\pgadmin\data:/var/lib/pgadmin" dpage/pgadmin4:latest
+
+admin@local.com / admin123
+داده‌ها در C:\Docker\postgres\data پایدار می‌ماند.
+
+docker exec -it postgres psql -U appuser -d postgres -c "CREATE DATABASE shopdb;"
+
+
+cmd run > 
+type D:\Repositories\GitHub\PostgreSQLToAspCore9\shopdb_postgres.sql | docker exec -i postgres psql -U appuser -d shopdb -v ON_ERROR_STOP=1

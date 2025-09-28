@@ -123,3 +123,6 @@ C:\Users\Bardia\Desktop\PostgreSQLToAspCore9\ShopApiPostgreSQL\bin\Debug\net10.0
 C:\Users\Bardia\Desktop\PostgreSQLToAspCore9\ShopApiPostgreSQL\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Bardia\Desktop\PostgreSQLToAspCore9\ShopApiPostgreSQL\obj\Debug\net10.0\ShopApiPostgreSQL.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Bardia\Desktop\PostgreSQLToAspCore9\ShopApiPostgreSQL\bin\Debug\net10.0\Newtonsoft.Json.dll
+C:\Users\Bardia\Desktop\PostgreSQLToAspCore9\ShopApiPostgreSQL\bin\Debug\net10.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Bardia\Desktop\PostgreSQLToAspCore9\ShopApiPostgreSQL\bin\Debug\net10.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Bardia\Desktop\PostgreSQLToAspCore9\ShopApiPostgreSQL\bin\Debug\net10.0\Newtonsoft.Json.Bson.dll

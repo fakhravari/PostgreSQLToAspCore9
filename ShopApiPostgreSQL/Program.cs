@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using ShopApiPostgreSQL.Data;
-using System.Text.Json.Serialization;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,11 +16,19 @@ builder.Services.AddSwaggerGen(o =>
 });
 
 
-builder.Services.AddControllersWithViews()
-    .AddJsonOptions(o =>
+builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
     {
-        o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-        o.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull; // حذف فیلد null
+        // 1) جلوگیری از حلقه‌های ارجاعی
+        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
+        // 2) حذف فیلدهای null
+        options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+
+        // 3) حفظ PascalCase (غیرفعال‌کردن camelCase)
+        options.SerializerSettings.ContractResolver = new DefaultContractResolver
+        {
+            NamingStrategy = new DefaultNamingStrategy()
+        };
     });
 
 

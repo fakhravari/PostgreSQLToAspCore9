@@ -96,7 +96,7 @@ public class CustomersController(ShopDbContext db) : ControllerBase
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, [FromBody] CustomerCreateDto dto)
     {
-        var c = await db.Customers.FindAsync(id);
+        var c = await db.Customers.AsTracking().FirstOrDefaultAsync(v => v.CustomerId == id);
         if (c is null) return NotFound();
         c.FullName = dto.FullName; c.Email = dto.Email;
         await db.SaveChangesAsync();

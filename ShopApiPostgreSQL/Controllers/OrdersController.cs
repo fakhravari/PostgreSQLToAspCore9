@@ -71,7 +71,7 @@ public class OrdersController(ShopDbContext db) : ControllerBase
     [HttpPut("{id:int}/status")]
     public async Task<IActionResult> UpdateStatus(int id, [FromBody] OrderStatus status)
     {
-        var o = await db.Orders.FindAsync(id);
+        var o = await db.Orders.AsTracking().FirstOrDefaultAsync(v => v.OrderId == id);
         if (o is null) return NotFound();
         o.Status = status;
         await db.SaveChangesAsync();

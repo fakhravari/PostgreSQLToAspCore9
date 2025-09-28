@@ -24,8 +24,7 @@ public class CategoriesController(ShopDbContext db) : ControllerBase
                     p.Price,
                     p.CategoryId
                 }).ToList()
-            })
-            .ToListAsync();
+            }).ToListAsync();
 
         return Ok(data);
     }
@@ -34,17 +33,18 @@ public class CategoriesController(ShopDbContext db) : ControllerBase
     public async Task<ActionResult<Category>> Get(int id)
     {
         var data = await db.Categories.Select(c => new
-                    {
-                        c.CategoryId,
-                        c.Name,
-                        Products = c.Products.Select(p => new
-                        {
-                            p.ProductId,
-                            p.Name,
-                            p.Price,
-                            p.CategoryId
-                        }).ToList()
-                    }).FirstOrDefaultAsync(v => v.CategoryId == id);
+        {
+            c.CategoryId,
+            c.Name,
+            c.Slug,
+            Products = c.Products.Select(p => new
+            {
+                p.ProductId,
+                p.Name,
+                p.Price,
+                p.CategoryId
+            }).ToList()
+        }).FirstOrDefaultAsync(v => v.CategoryId == id);
 
         return data is { } c ? Ok(c) : NotFound();
     }
@@ -60,7 +60,7 @@ public class CategoriesController(ShopDbContext db) : ControllerBase
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, [FromBody] CategoryCreateDto dto)
     {
-        var c = await db.Categories.FindAsync(id);
+        var c = await db.Categories.AsTracking().FirstOrDefaultAsync(v => v.CategoryId == id);
         if (c is null) return NotFound();
         c.Name = dto.Name; c.Slug = dto.Slug;
         await db.SaveChangesAsync();

@@ -450,6 +450,58 @@
   },
   {
     "ContainingType": "ShopApiPostgreSQL.Controllers.ReportsController",
+    "Method": "GetOrdersByCustomer",
+    "RelativePath": "api/Reports/orders/by-customer/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ShopApiPostgreSQL.Models.OrderSummaryDto, ShopApiPostgreSQL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ShopApiPostgreSQL.Controllers.ReportsController",
+    "Method": "GetOrdersByCustomer2",
+    "RelativePath": "api/Reports/orders/by-customer2/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ShopApiPostgreSQL.Models.OrderSummary2Dto, ShopApiPostgreSQL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ShopApiPostgreSQL.Controllers.ReportsController",
     "Method": "ProductsWithCategory",
     "RelativePath": "api/Reports/products-with-category",
     "HttpMethod": "GET",
@@ -457,5 +509,25 @@
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApiPostgreSQL.Controllers.ReportsController",
+    "Method": "GetProductsWithCategory",
+    "RelativePath": "api/Reports/vw_products-with-category",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ShopApiPostgreSQL.Models.VwProductWithCategory, ShopApiPostgreSQL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

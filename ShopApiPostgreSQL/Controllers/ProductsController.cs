@@ -69,4 +69,18 @@ public class ProductsController(ShopDbContext db) : ControllerBase
             }).ToListAsync();
         return Ok(data);
     }
+
+
+    [HttpPost("upsert")]
+    public async Task<ActionResult> UpsertProduct(
+    int? productId, string name, decimal price, int categoryId)
+    {
+        await db.Database.ExecuteSqlRawAsync(
+            "CALL sp_upsert_product({0}, {1}, {2}, {3});",
+            parameters: new object?[] { productId ?? 0, name, price, categoryId }
+        );
+
+        return Ok(new { message = "Operation completed" });
+    }
+
 }

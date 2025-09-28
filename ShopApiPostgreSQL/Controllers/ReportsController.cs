@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
-using NpgsqlTypes;
 using ShopApiPostgreSQL.Data;
 using ShopApiPostgreSQL.Models;
 using System.Data;

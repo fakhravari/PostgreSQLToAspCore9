@@ -1,7 +1,7 @@
 -- پارامترها
 DO $$
 DECLARE
-  target_year INT := 2025;
+  target_year INT := 2024;
   orders_per_month INT := 8;
   c_id INT;
   o_id INT;

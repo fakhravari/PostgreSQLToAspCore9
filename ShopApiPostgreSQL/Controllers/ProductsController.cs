@@ -71,6 +71,8 @@ public class ProductsController(ShopDbContext db) : ControllerBase
     }
 
 
+    // اگر productId = NULL یا 0 باشه → Insert می‌کنه
+    // اگر productId > 0 باشه → همون محصول رو Update می‌کنه
     [HttpPost("upsert")]
     public async Task<ActionResult> UpsertProduct(
     int? productId, string name, decimal price, int categoryId)
@@ -82,5 +84,4 @@ public class ProductsController(ShopDbContext db) : ControllerBase
 
         return Ok(new { message = "Operation completed" });
     }
-
 }
